@@ -1,0 +1,12 @@
+{{- $out := slice -}}
+{{- range where site.RegularPages "Kind" "page" -}}
+  {{- $out = $out | append (dict
+      "t" .Title
+      "d" (.Description | default "")
+      "u" .RelPermalink
+      "s" .Section
+      "g" (delimit (.Params.tags | default slice) " ")
+      "b" (.Plain | htmlUnescape | truncate 1200 "")
+  ) -}}
+{{- end -}}
+{{- $out | jsonify -}}

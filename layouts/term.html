@@ -1,0 +1,7 @@
+{{ define "main" }}
+<div class="wrap">
+  <h1 class="page-title">{{ .Title | lower }}</h1>
+  <p class="post-meta">{{ len .Pages }} post{{ if ne (len .Pages) 1 }}s{{ end }} · <a href="/tags/">all tags</a></p>
+  {{ partial "post-list.html" (sort .Pages "Date" "desc") }}
+</div>
+{{ end }}

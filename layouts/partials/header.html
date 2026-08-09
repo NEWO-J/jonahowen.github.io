@@ -1,0 +1,20 @@
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="/">{{ site.Params.author | upper }}</a>
+    <nav class="nav" aria-label="Main">
+      {{- $cur := .RelPermalink }}
+      {{- range site.Menus.main }}
+      {{- $active := or (eq $cur .URL) (and (ne .URL "/") (hasPrefix $cur .URL)) }}
+      <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{- end }}
+    </nav>
+    <div class="bar-tools">
+      <button type="button" class="tool" id="search-open" aria-label="Search" aria-haspopup="dialog">
+        search <kbd>/</kbd>
+      </button>
+      <button type="button" class="tool" id="theme-toggle" aria-label="Switch colour theme">
+        <span data-theme-label></span>
+      </button>
+    </div>
+  </div>
+</header>

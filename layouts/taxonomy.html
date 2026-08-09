@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="wrap">
+  <h1 class="page-title">{{ .Title | lower }}</h1>
+  <ol class="rows">
+    {{- range .Pages }}
+    <li>
+      <a class="row" href="{{ .RelPermalink }}">
+        <span class="row-date">{{ len .Pages }}</span>
+        <span class="row-main"><span class="row-title">{{ .Title | lower }}</span></span>
+      </a>
+    </li>
+    {{- else }}
+    <li class="row-empty">No tags yet.</li>
+    {{- end }}
+  </ol>
+</div>
+{{ end }}

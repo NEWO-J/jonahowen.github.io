@@ -1,0 +1,7 @@
+{{ define "main" }}
+<div class="wrap">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  {{ partial "post-list.html" (sort .Pages "Date" "desc") }}
+</div>
+{{ end }}

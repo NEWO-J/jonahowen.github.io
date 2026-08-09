@@ -1,3 +1,13 @@
-<video width="{{ .Get "width" | default "100%" }}" autoplay loop muted playsinline controls>
-  <source src="{{ .Get "src" }}" type="video/mp4">
-</video>
+{{- $src := .Get "src" -}}
+{{- $width := .Get "width" | default "100%" -}}
+{{- if hasPrefix $src "/" -}}
+  {{- $local := printf "static%s" $src -}}
+  {{- if not (fileExists $local) -}}
+    {{- errorf "video: %q does not exist (expected %s) — referenced in %s" $src $local .Position -}}
+  {{- end -}}
+{{- end -}}
+<figure class="fig" style="--fw:{{ $width }}">
+  <video autoplay loop muted playsinline controls preload="metadata">
+    <source src="{{ $src }}" type="video/mp4">
+  </video>
+</figure>

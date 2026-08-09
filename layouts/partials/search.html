@@ -1,0 +1,139 @@
+<div class="search" id="search" hidden>
+  <div class="search-backdrop" data-search-close></div>
+  <div class="search-box" role="dialog" aria-modal="true" aria-label="Search">
+    <input class="search-input" id="search-input" type="text" autocomplete="off" autocorrect="off"
+           spellcheck="false" placeholder="search" role="combobox" aria-expanded="false"
+           aria-controls="search-results" aria-autocomplete="list">
+    <ul class="search-results" id="search-results" role="listbox" aria-label="Results"></ul>
+    <p class="search-hint"><kbd>&uarr;</kbd><kbd>&darr;</kbd> move <kbd>&crarr;</kbd> open <kbd>esc</kbd> close</p>
+  </div>
+</div>
+<script>
+(function () {
+  var el = document.getElementById("search");
+  var input = document.getElementById("search-input");
+  var list = document.getElementById("search-results");
+  var openBtn = document.getElementById("search-open");
+  var docs = null, hits = [], cur = -1, restoreTo = null;
+
+  function load() {
+    if (docs) return Promise.resolve(docs);
+    return fetch("/index.json")
+      .then(function (r) { return r.json(); })
+      .then(function (d) { docs = d; return docs; })
+      .catch(function () { docs = []; return docs; });
+  }
+
+  function score(doc, tokens) {
+    var t = doc.t.toLowerCase(), g = (doc.g || "").toLowerCase();
+    var d = (doc.d || "").toLowerCase(), b = (doc.b || "").toLowerCase();
+    var total = 0;
+    for (var i = 0; i < tokens.length; i++) {
+      var q = tokens[i], s = 0;
+      if (t.indexOf(q) === 0) s = 10;
+      else if (t.indexOf(q) > -1) s = 6;
+      else if (g.indexOf(q) > -1) s = 4;
+      else if (d.indexOf(q) > -1) s = 2;
+      else if (b.indexOf(q) > -1) s = 1;
+      if (!s) return 0;
+      total += s;
+    }
+    return total;
+  }
+
+  function render() {
+    list.innerHTML = "";
+    cur = hits.length ? 0 : -1;
+    hits.forEach(function (doc, i) {
+      var li = document.createElement("li");
+      li.className = "search-hit";
+      li.id = "search-hit-" + i;
+      li.setAttribute("role", "option");
+      li.setAttribute("aria-selected", i === 0 ? "true" : "false");
+      var a = document.createElement("a");
+      a.href = doc.u;
+      a.innerHTML = '<span class="search-hit-section">' + doc.s + "</span>" +
+                    '<span class="search-hit-title"></span>';
+      a.querySelector(".search-hit-title").textContent = doc.t;
+      li.appendChild(a);
+      li.addEventListener("mousemove", function () { move(i - cur); });
+      list.appendChild(li);
+    });
+    input.setAttribute("aria-expanded", hits.length ? "true" : "false");
+    mark();
+  }
+
+  function mark() {
+    var items = list.children;
+    for (var i = 0; i < items.length; i++) {
+      var on = i === cur;
+      items[i].setAttribute("aria-selected", on ? "true" : "false");
+      items[i].classList.toggle("is-active", on);
+    }
+    if (cur > -1) {
+      input.setAttribute("aria-activedescendant", "search-hit-" + cur);
+      items[cur].scrollIntoView({ block: "nearest" });
+    } else {
+      input.removeAttribute("aria-activedescendant");
+    }
+  }
+
+  function move(delta) {
+    if (!hits.length) return;
+    cur = (cur + delta + hits.length) % hits.length;
+    mark();
+  }
+
+  function run() {
+    var q = input.value.trim().toLowerCase();
+    if (!q) { hits = []; render(); return; }
+    var tokens = q.split(/\s+/);
+    hits = (docs || [])
+      .map(function (d) { return { d: d, s: score(d, tokens) }; })
+      .filter(function (x) { return x.s > 0; })
+      .sort(function (a, b) { return b.s - a.s; })
+      .slice(0, 8)
+      .map(function (x) { return x.d; });
+    render();
+  }
+
+  function open() {
+    if (!el.hidden) return;
+    restoreTo = document.activeElement;
+    el.hidden = false;
+    document.body.classList.add("search-on");
+    input.value = "";
+    hits = []; render();
+    input.focus();
+    load().then(function () { if (input.value) run(); });
+  }
+
+  function close() {
+    if (el.hidden) return;
+    el.hidden = true;
+    document.body.classList.remove("search-on");
+    if (restoreTo && restoreTo.focus) restoreTo.focus();
+  }
+
+  function typing(t) {
+    return t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+  }
+
+  if (openBtn) openBtn.addEventListener("click", open);
+  Array.prototype.forEach.call(el.querySelectorAll("[data-search-close]"), function (n) {
+    n.addEventListener("click", close);
+  });
+  input.addEventListener("input", run);
+
+  document.addEventListener("keydown", function (e) {
+    if ((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open(); return; }
+    if (e.key === "/" && el.hidden && !typing(e.target)) { e.preventDefault(); open(); return; }
+    if (el.hidden) return;
+    if (e.key === "Escape") { e.preventDefault(); close(); }
+    else if (e.key === "ArrowDown") { e.preventDefault(); move(1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
+    else if (e.key === "Enter" && cur > -1) { e.preventDefault(); location.href = hits[cur].u; }
+    else if (e.key === "Tab") { e.preventDefault(); input.focus(); }
+  });
+})();
+</script>

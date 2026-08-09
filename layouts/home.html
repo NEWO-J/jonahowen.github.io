@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="wrap">
+
+  <section class="intro">
+    <h1>{{ site.Params.author }}</h1>
+    <p class="intro-line">{{ site.Params.tagline }}</p>
+    <p class="intro-certs"><a href="/about/">{{ site.Params.certs }}</a></p>
+  </section>
+
+  {{- with where site.RegularPages "Section" "blog" }}
+  <section>
+    <h2 class="section-head"><span>writing</span><a href="/blog/">all &rarr;</a></h2>
+    {{ partial "post-list.html" (sort . "Date" "desc") }}
+  </section>
+  {{- end }}
+
+  {{- with where site.RegularPages "Section" "projects" }}
+  <section>
+    <h2 class="section-head"><span>projects</span><a href="/projects/">all &rarr;</a></h2>
+    {{ partial "project-list.html" . }}
+  </section>
+  {{- end }}
+
+</div>
+{{ end }}

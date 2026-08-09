@@ -1,5 +1,6 @@
 ---
 title: "Framechain"
-layout: "single"
+year: 2026
+status: "WIP"
 ---
 Post coming soon.

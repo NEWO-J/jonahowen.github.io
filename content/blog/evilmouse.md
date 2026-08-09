@@ -1,9 +1,9 @@
 ---
 title: "Evilmouse"
-layout: "single"
 date: 2026-02-15
 showtoc: true
 description: "A covert keystroke injector hidden inside a fully functional mouse."
+tags: ["hardware", "red-team", "hid"]
 cover:
   image: "/images/evilmouse1.png"
   alt: "Evilmouse"
@@ -12,10 +12,10 @@ cover:
 
 Evilmouse is a covert keystroke injector hidden inside a fully functional mouse, similar in concept to a [Rubber Ducky](https://hak5.org/products/usb-rubber-ducky) tool. As soon as it connects, it can autonomously execute commands and begin compromising the system.
 
-### The Idea
+## The Idea
 These days, everyone that's been through basic job security awareness training knows that a USB stick plugged into a computer is suspicious. A mouse, however, might not appear suspicious at all, especially when its functionality is preserved.
 
-### Materials
+## Materials
 | Material | Quantity | Approx. Price |
 |---|---|---|
 | RP-2040 Zero | 1 | $3 |
@@ -33,7 +33,7 @@ Not bad considering a rubber ducky will cost you around $100.
 
 Also, if you already have some of these soldering materials, it will be much cheaper.
 
-### Building Evilmouse
+## Building Evilmouse
 {{< figure src="/images/evilmouse2.png" alt="Evilmouse" width="90%" >}}
 Building the mouse presented several challenges that I had to overcome.
 
@@ -69,7 +69,7 @@ Now all I had to do is connect the dupont wires to the PCB and jiggle it around 
 {{< figure src="/images/evilmouse7.png" alt="Evilmouse" width="70%" >}}
 I had to push the usb breakout inwards as I closed the shell for it to work.
 
-### Reverse Shell Demo
+## Reverse Shell Demo
 Now is the moment you've been waiting for. Time to see it in action:
 {{< video src="/videos/evilmouse_demo.mp4" >}}
 For anyone confused, I get an admin-level reverse shell sent to laptop B just a few seconds after the mouse is plugged in to laptop A, this essentially means I've fully compromised laptop A just by plugging in a "mouse"... scary world we live in.

@@ -1,0 +1,28 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $width := .Get "width" | default "100%" -}}
+{{- $caption := .Get "caption" -}}
+
+{{- $local := "" -}}
+{{- if hasPrefix $src "/" -}}
+  {{- $local = printf "static%s" $src -}}
+  {{- if not (fileExists $local) -}}
+    {{- errorf "figure: %q does not exist (expected %s) — referenced in %s" $src $local .Position -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $w := 0 }}{{ $h := 0 -}}
+{{- if and $local (fileExists $local) (in (slice ".png" ".jpg" ".jpeg" ".gif") (path.Ext $src | lower)) -}}
+  {{- with (images.Config $local) -}}
+    {{- $w = .Width }}{{ $h = .Height -}}
+  {{- end -}}
+{{- end -}}
+
+<figure class="fig" style="--fw:{{ $width }}">
+  <img src="{{ $src }}" alt="{{ $alt }}"
+       {{- if $w }} width="{{ $w }}" height="{{ $h }}"{{ end }}
+       loading="{{ cond (eq .Ordinal 0) "eager" "lazy" }}" decoding="async">
+  {{- with $caption }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>

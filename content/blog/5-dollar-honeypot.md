@@ -1,9 +1,9 @@
 ---
 title: "$5 Honeypot In The Cloud"
-layout: "single"
 date: 2026-03-14
 showtoc: true
 description: "Running a $5 Cowrie honeypot proxying to a Docker instance; all hosted in AWS Lightsail with Splunk Connector + Geomap — catching a week old malware strain"
+tags: ["blue-team", "cloud", "honeypot", "malware"]
 cover:
   image: "/images/worldmapview.png"
   alt: "Honeypot In The Cloud"
@@ -30,22 +30,22 @@ You can use the code for that here: [https://github.com/NEWO-J/honeypot-tools](h
 {{< figure src="/images/cowrie_light.svg" alt="Cowrie graph" width="120%" >}}
 
 
-### 10:15 AM - Open for Business
+## 10:15 AM - Open for Business
 At 10:15:25 AM CDT, I started up Cowrie, the honeypot is officially exposed to the world wide web.
 
-### 10:27 AM - First Contact
+## 10:27 AM - First Contact
 at 10:27:21 AM CDT, we have first contact! No login attempt yet, this was likely just a port scan / probe. 
 {{< figure src="/images/firstcontact.png" alt="First contact" width="120%" >}}
 Using IP geolocation, we can see the requests originate from Singapore.
 {{< figure src="/images/15minutesin.png" alt="Singapore" width="120%" >}}
 
-### 10:28 AM - First Login
+## 10:28 AM - First Login
 at 10:28:42 AM, a successful login from the same IP
 
 Credentials used: `root:1234567890`
 {{< figure src="/images/firstlogin.png" alt="First login" width="120%" >}}
 
-### 10:29 AM - Malware Assessment Stage
+## 10:29 AM - Malware Assessment Stage
 A common pattern in modern malware dropper bots is a sort of "pre-screening test"
 {{< figure src="/images/asessment.png" alt="assessment" width="120%" >}}
 In this stage, the bot will run several commands with the goal of answering the question:
@@ -70,13 +70,13 @@ I actually built a benchmark script inspired by this bot's detection method, I u
 
 See the code here: [benchmark.py](https://github.com/NEWO-J/honeypot-tools/blob/main/benchmark.py)
 
-### 10:30 AM - XMRIG Cryptominer Gets Installed
+## 10:30 AM - XMRIG Cryptominer Gets Installed
 My honeypot passed the test! the bot proceeded to the next stage and cryptominer malware was installed on the honeypot.
 {{< figure src="/images/dot16.png" alt="dot16" width="120%" >}}
 
 It took several iterations of my honeypot design to ensure it passed these kinds of tests, I used Cowrie in "Proxy" mode with a custom docker instance, this is much more convincing than the default "Shell" mode you will see with most Cowrie honeypots.
 
-### Brief Malware Analysis
+## Brief Malware Analysis
 Searching a hash of this malware on VirusTotal yields the following result:
 {{< figure src="/images/virustotal.png" alt="Virustotal score" width="120%" >}}
 Some more interesting data includes:
@@ -89,7 +89,7 @@ Using a strings query, I was able to find the monero wallet address where the mi
 {{< figure src="/images/walletkeys.png" alt="Wallet keys" width="120%" >}}
 Feel free to send a tip! (just kidding)
 
-### 10:30 AM - C2 Server Spotted
+## 10:30 AM - C2 Server Spotted
 After failing to execute the Cryptominer malware, the bot tried again, using an HTTP request instead of SFTP to download the malware,
 this revealed the IP address of the C2 server hosting the malware.
 {{< figure src="/images/C2.png" alt="C2 Server" width="120%" >}}
@@ -98,10 +98,10 @@ According to WHOIS records, this IP range belongs to Netiface LLC, a VPS/Server 
 When I visited the link in an isolated environment, there was nothing there.
 This is either because the server either detected I wasn't a bot requesting the file, or it was simply a "burned proxy" that already got rotated out.
 
-### 12:11 PM - 600 Requests
+## 12:11 PM - 600 Requests
 At this point, the honeypot has gotten over 600 requests.
 
-### 3:07 PM - Possible Botnet Recruitment?
+## 3:07 PM - Possible Botnet Recruitment?
 {{< figure src="/images/botnet.png" alt="Botnet" width="120%" >}}
 
 Around 3:07 PM a bot was frantically trying to change the password on my device.
@@ -118,7 +118,7 @@ The bot appeared to be trying multiple persistence techniques, likely because it
 This behavior is commonly associated with IoT-focused malware families such as variants of Mirai.
 These botnets attempt to maintain access by modifying credentials or configuration depending on the detected platform.
 
-### Conclusion
+## Conclusion
 The traffic continued to ressemble either botnet recruitment or cryptomining attempts.
 
 I choose AWS lightsail for this project because it provides a VPS with a public IP and offers the simplicity of no NAT (Network Address Translation) allowing me to gain insights into the attacker's source IP while offering the additional protection from the Cloud.
