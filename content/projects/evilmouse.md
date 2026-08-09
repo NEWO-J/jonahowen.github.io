@@ -1,10 +1,13 @@
 ---
 title: "Evilmouse"
-description: "A keystroke injector hidden inside a fully functional $6 mouse, built on an RP2040-Zero."
-year: 2026
-status: "SHIPPED"
-repo: "https://github.com/NEWO-J/evilmouse"
+aliases: ["/blog/evilmouse/"]
+date: 2026-02-15
 showtoc: true
+description: "A covert keystroke injector hidden inside a fully functional mouse."
+tags: ["hardware", "red-team", "hid"]
+cover:
+  image: "/images/evilmouse1.png"
+  alt: "Evilmouse"
 ---
 {{< figure src="/images/evilmouse1.png" alt="Evilmouse" width="70%" >}}
 
@@ -23,7 +26,7 @@ These days, everyone that's been through basic job security awareness training k
 | Rosin-core 60/40 Solder |1  | $8 |
 | USB-C Data Cable | 1 | $8 |
 | Flux Paste | 1 | $6 |
-| Kapton Tape | 1 | $5 | 
+| Kapton Tape | 1 | $5 |
 | Dupont Wires | 4 | basically free (~$0.03) |
 | **Total** | | **~$44** |
 
@@ -61,9 +64,9 @@ It took me around a week to get good enough at soldering through-holes component
 
 Before the final assembly, its important that we prevent short circuits by adding a piece of kapton tape to the bottom of the components resting on the PCB, this will insulate any electricity from spreading.
 
-{{< figure src="/images/evilmouse8.jpg" alt="Evilmouse" width="70%" >}} 
+{{< figure src="/images/evilmouse8.jpg" alt="Evilmouse" width="70%" >}}
 
-Now all I had to do is connect the dupont wires to the PCB and jiggle it around until I found a configuration that fit the mouse shell. I got the shell to close (and still be functional) with this arrangement: 
+Now all I had to do is connect the dupont wires to the PCB and jiggle it around until I found a configuration that fit the mouse shell. I got the shell to close (and still be functional) with this arrangement:
 {{< figure src="/images/evilmouse7.png" alt="Evilmouse" width="70%" >}}
 I had to push the usb breakout inwards as I closed the shell for it to work.
 

@@ -7,17 +7,10 @@
     <p class="intro-certs"><a href="/about/">{{ site.Params.certs }}</a></p>
   </section>
 
-  {{- with where site.RegularPages "Section" "blog" }}
-  <section>
-    <h2 class="section-head"><span>writing</span><a href="/blog/">all &rarr;</a></h2>
-    {{ partial "post-list.html" (sort . "Date" "desc") }}
-  </section>
-  {{- end }}
-
   {{- with where site.RegularPages "Section" "projects" }}
   <section>
     <h2 class="section-head"><span>projects</span><a href="/projects/">all &rarr;</a></h2>
-    {{ partial "project-list.html" . }}
+    {{ partial "post-list.html" (sort . "Date" "desc") }}
   </section>
   {{- end }}
 

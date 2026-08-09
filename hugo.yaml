@@ -25,7 +25,6 @@ params:
   author: "Jonah Owen"
   tagline: "Offensive security · hardware · tooling"
   certs: "OSCP · CPTS · A+ · Network+ · Security+"
-  resume: "/resume.pdf"
   social:
     - name: github
       url: "https://github.com/NEWO-J"
@@ -34,15 +33,12 @@ params:
 
 menu:
   main:
-    - name: blog
-      url: /blog/
-      weight: 10
     - name: projects
       url: /projects/
-      weight: 20
+      weight: 10
     - name: about
       url: /about/
-      weight: 30
+      weight: 20
 
 markup:
   goldmark:

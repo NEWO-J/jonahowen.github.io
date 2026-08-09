@@ -1,16 +1,12 @@
+{{- if eq .Section "projects" -}}
 {{- $bits := slice -}}
 {{- if not .Date.IsZero -}}
   {{- $bits = $bits | append (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02")) -}}
 {{- end -}}
-{{- with .Params.year -}}
-  {{- if $.Date.IsZero -}}{{- $bits = $bits | append (printf "%v" .) -}}{{- end -}}
-{{- end -}}
 {{- if .WordCount -}}
   {{- $bits = $bits | append (printf "%d min" .ReadingTime) -}}
-{{- end -}}
-{{- with .Params.status -}}
-  {{- $bits = $bits | append (. | lower) -}}
 {{- end -}}
 {{- with $bits }}
 <p class="post-meta">{{ delimit . " · " | safeHTML }}</p>
 {{- end }}
+{{- end -}}

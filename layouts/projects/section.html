@@ -2,6 +2,6 @@
 <div class="wrap">
   <h1 class="page-title">{{ .Title }}</h1>
   {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
-  {{ partial "project-list.html" .Pages }}
+  {{ partial "post-list.html" (sort .Pages "Date" "desc") }}
 </div>
 {{ end }}

@@ -2,13 +2,6 @@
 title: "About"
 description: "Jonah Owen — offensive security researcher. Certifications, contact, and what I work on."
 ---
-I'm Jonah Owen. I work on offensive security — access control and IDOR research on the
-[Synack Red Team](https://www.synack.com/red-team/), hardware implants, and the tooling I end up writing to
-make both of those faster.
-
-Most of what's on this site is a build log: something broke, or something needed automating, and this is what
-came out the other side. If a post is useful to you, take it and improve on it.
-
 ## Certifications
 
 | Credential | Issuer | Verify |
@@ -23,4 +16,3 @@ came out the other side. If a post is useful to you, take it and improve on it.
 
 - [github.com/NEWO-J](https://github.com/NEWO-J)
 - [LinkedIn](https://www.linkedin.com/in/jonah-owen-487060321/)
-- [Résumé (PDF)](/resume.pdf)
