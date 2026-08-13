@@ -15,7 +15,7 @@ Microsoft Defender's "Attack Story" feature uses a graph comprised of nodes and 
 Microsoft uses their own proprietary graphing engine as well as AI to achieve this, but this week I built a simpler clone using NEO4J, an open-source graphing database.
 
 ## Tech Stack
-- **ALL:**: Docker
+- **ALL**: Docker
 - **Auth Frontend**: Nginx, Javascript, HTML
 - **Auth Backend**: Python, FastAPI, PostgreSQL
 - **Dashboard Frontend**: Nginx, Javascript, HTML, CSS, Vis.js
