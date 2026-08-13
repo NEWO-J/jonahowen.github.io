@@ -9,12 +9,12 @@ cover:
   image: "/images/defenderclone.png"
   alt: "Defender XDR Graphing Engine Clone"
 ---
-{{< figure src="/images/defenderclone.png" alt="Architecture Diagram" width="100%" >}}
+{{< figure src="/images/defenderclone.png" alt="Architecture Diagram" width="70%" >}}
 
 Microsoft Defender's "Attack Story" feature uses a graph comprised of nodes and relationships (edges) to visually represent the path of a security incident.
 Microsoft uses their own proprietary graphing engine as well as AI to achieve this, but this week I built a simpler clone using NEO4J, an open-source graphing database.
 
-{{< figure src="/images/passwordspraydemo.png" alt="Password Spray Demo" width="100%" >}}
+{{< figure src="/images/passwordspraydemo.png" alt="Password Spray Demo" width="80%" >}}
 
 ## Tech Stack
 - **ALL**: Docker
