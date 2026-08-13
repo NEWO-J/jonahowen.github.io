@@ -25,7 +25,7 @@ Microsoft uses their own proprietary graphing engine as well as AI to achieve th
 - **Neo4j Connector**: Kafka, Python, Neo4j
 - **Policy Engine**: Kafka, Python
 
-### Authentication 
+## Authentication 
 I started by designing a very simple service to which a user could authenticate to.
 
 There is a choice of 4 services that the user can authenticate to: mail, ftp, db, or test.
@@ -44,7 +44,7 @@ Upon reaching the dashboard page, our JWT token gets sent to the /api/verify end
 If its valid, we get to continue to the service page, if its invalid, or the role attached to our user does not have the proper access for this service we get sent back to the authentication page.
 Importantly, we publish the result of this authentication to our Kafka `auth_logs` topic.
 
-### Anomaly Detection
+## Anomaly Detection
 Our anomaly detector is subscribed to the Kafka `auth_logs` topic and continuously waits for a new message to be published.
 
 I implemented three basic detections 
@@ -67,7 +67,7 @@ If the API returns `{"is_tor":True}` then we send an alert.
 When sending the alerts, we publish to the `incident_logs` kafka topic.
 {{< figure src="/images/kafkapublish.png" alt="Kafka publish" width="80%" >}}
 
-### Graph Visualization (Attack Story)
+## Graph Visualization (Attack Story)
 
 
 
