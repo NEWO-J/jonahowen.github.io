@@ -69,6 +69,23 @@ When sending the alerts, we publish to the `incident_logs` kafka topic.
 
 ## Graph Visualization (Attack Story)
 
+`node_connector.py` is subscribed to the `incident_logs` Kafka topic and awaits new messages.
 
+When it sees a new incident, it executes a cypher query to store the data in neo4j using the following schema
+
+```
+query = """
+        MERGE (i:Incident {incident_id: $id, incident_date: $ts})
+        SET i += $details
+        MERGE (u:User {username: $username})
+        MERGE (s:Service {service: $service})
+        MERGE (h:Host {ip: $ip})
+        MERGE (i)-[:INCIDENT]->(u)
+        MERGE (h)-[:FROM_HOST]->(u)
+        MERGE (u)-[:ACCESSING_SERVICE]->(s)
+        """
+```
+
+Then the dashboard backend takes a query 
 
 
