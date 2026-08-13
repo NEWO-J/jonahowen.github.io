@@ -4,7 +4,7 @@
   {{- with .Params.cover.image }}
     {{- if in (slice ".png" ".jpg" ".jpeg" ".webp") (path.Ext . | lower) }}
       {{- with resources.Get (strings.TrimPrefix "/" .) }}
-        {{- $thumb = .Fill "384x240 Center webp q80" }}
+        {{- $thumb = .Fill "560x350 Center webp q80" }}
       {{- end }}
     {{- end }}
   {{- end }}
