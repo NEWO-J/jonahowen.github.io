@@ -1,9 +1,23 @@
 <ol class="rows">
   {{- range . }}
+  {{- $thumb := "" }}
+  {{- with .Params.cover.image }}
+    {{- if in (slice ".png" ".jpg" ".jpeg" ".webp") (path.Ext . | lower) }}
+      {{- with resources.Get (strings.TrimPrefix "/" .) }}
+        {{- $thumb = .Fill "384x240 Center webp q80" }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
   <li>
-    <a class="row" href="{{ .RelPermalink }}">
-      <time class="row-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    <a class="row{{ if not $thumb }} row-bare{{ end }}" href="{{ .RelPermalink }}">
+      {{- with $thumb }}
+      <span class="row-cover">
+        <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
+             alt="" loading="lazy" decoding="async">
+      </span>
+      {{- end }}
       <span class="row-main">
+        <time class="row-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
         <span class="row-title">{{ .Title }}</span>
         {{- with .Description }}
         <span class="row-desc">{{ . }}</span>

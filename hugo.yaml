@@ -40,6 +40,21 @@ menu:
       url: /about/
       weight: 20
 
+module:
+  mounts:
+    - source: archetypes
+      target: archetypes
+    - source: assets
+      target: assets
+    - source: content
+      target: content
+    - source: layouts
+      target: layouts
+    - source: static
+      target: static
+    - source: static
+      target: assets
+
 markup:
   goldmark:
     renderer:
