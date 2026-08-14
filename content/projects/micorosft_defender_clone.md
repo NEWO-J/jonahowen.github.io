@@ -95,7 +95,7 @@ WHERE toString(i.incident_id) = $incident_id
 RETURN i
 ORDER BY i.incident_date DESC
 ```
-**2. Extract all related entities to the incident, branching out by MIN_DEPTH to depth (1 to 3 in this case, as we want to skip the actual incident node itself during the visualization)
+**2. Extract all related entities to the incident** branching out by MIN_DEPTH to depth (1 to 3 in this case, as we want to skip the actual incident node itself during the visualization)
 ```
 MATCH (i:Incident)-[:INCIDENT]->(involved:User)
 WHERE toString(i.incident_id) = $incident_id
@@ -108,5 +108,6 @@ RETURN seed, collect(path) AS paths
 ```
 The result of this query gets returned as a flattened JSON string, which is then ingested on our frontend via Vis.js, and thus we have our "Attack Story"
 
-{{< figure src="/images/incident1010.png" alt="Incident Search" width="80%" >}}
+{{< figure src="/images/incident1010.png" alt="Incident Search" width="100%" >}}
+{{< figure src="/images/passwordspraydemo.png" alt="Password Spray Demo" width="100%" >}}
 
