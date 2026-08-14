@@ -21,10 +21,8 @@ outputs:
   home: [HTML, RSS, JSON]
 
 params:
-  description: "Offensive security, hardware hacking, and the tools I build along the way."
+  description: "List of my security projects."
   author: "Jonah Owen"
-  tagline: "Offensive security · hardware · tooling"
-  certs: "OSCP · CPTS · A+ · Network+ · Security+"
   social:
     - name: github
       url: "https://github.com/NEWO-J"
