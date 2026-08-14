@@ -1,6 +1,6 @@
 ---
 title: "About"
-description: "Jonah Owen — offensive security researcher. Certifications, contact, and what I work on."
+description: "Jonah Owen."
 ---
 ## Certifications
 
