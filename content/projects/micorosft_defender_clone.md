@@ -86,6 +86,27 @@ query = """
         """
 ```
 
-Then the dashboard backend takes a query 
+Finally, when we enter an incident ID on our frontend, it will query our backend, which will run the following cypher queries:
 
+**1. Verify that the incident exists in our neo4j instance**
+```
+MATCH (i:Incident)
+WHERE toString(i.incident_id) = $incident_id
+RETURN i
+ORDER BY i.incident_date DESC
+```
+**2. Extract all related entities to the incident, branching out by MIN_DEPTH to depth (1 to 3 in this case, as we want to skip the actual incident node itself during the visualization)
+```
+MATCH (i:Incident)-[:INCIDENT]->(involved:User)
+WHERE toString(i.incident_id) = $incident_id
+WITH collect(DISTINCT involved) AS seeds
+UNWIND seeds AS seed
+OPTIONAL MATCH path = (seed)-[*{MIN_DEPTH}..{depth}]-(m)
+WHERE none(n IN nodes(path) WHERE n:Incident)
+  AND all(n IN nodes(path) WHERE NOT n:User OR n IN seeds)
+RETURN seed, collect(path) AS paths
+```
+The result of this query gets returned as a flattened JSON string, which is then ingested on our frontend via Vis.js, and thus we have our "Attack Story"
+
+{{< figure src="/images/incident1010.png" alt="Incident Search" width="80%" >}}
 
