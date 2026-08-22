@@ -1,0 +1,46 @@
+# Maps a `tech:` front-matter entry to a label + an icon file in
+# assets/icons/tech/<icon>.svg (Simple Icons, CC0).
+#
+# Keys are matched lowercased. If a key is missing here, the partial falls
+# back to using the entry itself as the icon filename, and renders a plain
+# text chip when no matching SVG exists.
+
+python:      { label: "Python",              icon: python }
+circuitpython: { label: "CircuitPython",     icon: python }
+kafka:       { label: "Apache Kafka",        icon: apachekafka }
+neo4j:       { label: "Neo4j",               icon: neo4j }
+postgresql:  { label: "PostgreSQL",          icon: postgresql }
+postgres:    { label: "PostgreSQL",          icon: postgresql }
+fastapi:     { label: "FastAPI",             icon: fastapi }
+flask:       { label: "Flask",               icon: flask }
+nginx:       { label: "Nginx",               icon: nginx }
+docker:      { label: "Docker",              icon: docker }
+kubernetes:  { label: "Kubernetes",          icon: kubernetes }
+javascript:  { label: "JavaScript",          icon: javascript }
+typescript:  { label: "TypeScript",          icon: typescript }
+react:       { label: "React",               icon: react }
+html:        { label: "HTML",                icon: html5 }
+css:         { label: "CSS",                 icon: css }
+aws:         { label: "AWS",                 icon: amazonwebservices }
+splunk:      { label: "Splunk",              icon: splunk }
+linux:       { label: "Linux",               icon: linux }
+ubuntu:      { label: "Ubuntu",              icon: ubuntu }
+raspberrypi: { label: "Raspberry Pi",        icon: raspberrypi }
+rp2040:      { label: "RP2040",              icon: raspberrypi }
+bash:        { label: "Bash",                icon: gnubash }
+git:         { label: "Git",                 icon: git }
+github:      { label: "GitHub",              icon: github }
+go:          { label: "Go",                  icon: go }
+rust:        { label: "Rust",                icon: rust }
+c:           { label: "C",                   icon: c }
+cpp:         { label: "C++",                 icon: cplusplus }
+redis:       { label: "Redis",               icon: redis }
+sqlite:      { label: "SQLite",              icon: sqlite }
+mysql:       { label: "MySQL",               icon: mysql }
+mongodb:     { label: "MongoDB",             icon: mongodb }
+elasticsearch: { label: "Elasticsearch",     icon: elasticsearch }
+grafana:     { label: "Grafana",             icon: grafana }
+terraform:   { label: "Terraform",           icon: terraform }
+wireshark:   { label: "Wireshark",           icon: wireshark }
+kali:        { label: "Kali Linux",          icon: kalilinux }
+arduino:     { label: "Arduino",             icon: arduino }

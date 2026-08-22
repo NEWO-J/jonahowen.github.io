@@ -25,6 +25,7 @@
         {{- with .Params.tags }}
         <span class="row-tags">{{ delimit . " · " }}</span>
         {{- end }}
+        {{- partial "tech-icons.html" .Params.tech }}
       </span>
     </a>
   </li>

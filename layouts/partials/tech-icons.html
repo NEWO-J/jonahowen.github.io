@@ -1,0 +1,33 @@
+{{- /*
+  Renders the tech stack of a page as monochrome inline SVGs.
+
+  Usage: {{ partial "tech-icons.html" .Params.tech }}
+
+  Each entry is looked up in data/tech.yaml for a label + icon name, then
+  resolved to assets/icons/tech/<icon>.svg. Unknown entries fall back to a
+  text chip so nothing silently disappears.
+*/ -}}
+{{- with . }}
+<span class="row-tech">
+  {{- range . }}
+  {{- $key := . | lower }}
+  {{- $meta := index (default dict site.Data.tech) $key }}
+  {{- $label := . }}
+  {{- $icon := $key | urlize }}
+  {{- with $meta }}
+    {{- with .label }}{{ $label = . }}{{ end }}
+    {{- with .icon }}{{ $icon = . }}{{ end }}
+  {{- end }}
+  {{- $res := resources.Get (printf "icons/tech/%s.svg" $icon) }}
+  {{- if $res }}
+  {{- $svg := $res.Content
+        | replaceRE `<title>.*?</title>` ""
+        | replaceRE `\srole="img"` ""
+        | replaceRE `<svg` `<svg aria-hidden="true" focusable="false"` }}
+  <span class="tech-icon" role="img" aria-label="{{ $label }}" title="{{ $label }}">{{ $svg | safeHTML }}</span>
+  {{- else }}
+  <span class="tech-chip" title="{{ $label }}">{{ $label }}</span>
+  {{- end }}
+  {{- end }}
+</span>
+{{- end }}

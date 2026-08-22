@@ -401,6 +401,36 @@ kbd {
   color: var(--muted);
 }
 
+.row-tech {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.4375rem;
+  color: var(--text);
+}
+
+.tech-icon {
+  display: inline-flex;
+  color: inherit;
+}
+
+.tech-icon svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  display: block;
+  fill: currentColor;
+}
+
+.tech-chip {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  line-height: 0.9375rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: inherit;
+}
+
 .row-empty {
   padding: 0.875rem 0;
   color: var(--muted);

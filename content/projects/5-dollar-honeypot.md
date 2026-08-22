@@ -5,6 +5,7 @@ date: 2026-03-14
 showtoc: true
 description: "Running a $5 Cowrie honeypot proxying to a Docker instance; all hosted in AWS Lightsail with Splunk Connector + Geomap — catching a week old malware strain"
 tags: ["blue-team", "cloud", "honeypot", "malware"]
+tech: ["aws", "docker", "ubuntu", "splunk", "python"]
 cover:
   image: "/images/$5awshoneypot.png"
   alt: "Honeypot In The Cloud"

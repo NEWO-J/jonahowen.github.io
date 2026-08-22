@@ -5,6 +5,7 @@ date: 2026-05-12
 showtoc: true
 description: "How I built AirGap-Diffy - a local-only HTTP differential testing tool that replays endpoints accross auth sessions to surface access-control breaks without manual comparison"
 tags: ["red-team", "tooling", "python", "access-control"]
+tech: ["python"]
 cover:
   image: "/images/diffy.png"
   alt: "AirGap-Diffy Thumbnail"

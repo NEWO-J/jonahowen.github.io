@@ -5,6 +5,7 @@ date: 2026-02-15
 showtoc: true
 description: "A covert keystroke injector hidden inside a fully functional mouse."
 tags: ["hardware", "red-team", "hid"]
+tech: ["circuitpython", "rp2040"]
 cover:
   image: "/images/evilmouse1.png"
   alt: "Evilmouse"
