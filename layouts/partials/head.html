@@ -16,6 +16,9 @@
 
 {{- $css := resources.Get "css/main.css" | minify | fingerprint "sha256" }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- if .IsHome }}
+<link rel="preload" href="/fonts/alien-block-latin.woff2" as="font" type="font/woff2" crossorigin>
+{{- end }}
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
