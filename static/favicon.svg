@@ -1,11 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <style>
-    .fg { stroke: #140b0b; }
-    @media (prefers-color-scheme: dark) { .fg { stroke: #ededed; } }
-  </style>
-  <g class="fg" fill="none" stroke-width="3" stroke-linecap="butt" stroke-linejoin="miter">
-    <path d="M20 18 L20 27 L5 27 L5 12 L14 12"/>
-    <path d="M18 6 L26 6 L26 14"/>
-    <path d="M14 18 L26 6"/>
+  <g fill="none" stroke="#140b0b" stroke-width="5" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M5 27 L26 6"/>
+    <path d="M14 6 L26 6 L26 18"/>
   </g>
 </svg>
