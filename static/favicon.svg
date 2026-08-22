@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <style>
-    .fg { stroke: #0a0a0a; }
+    .fg { stroke: #140b0b; }
     @media (prefers-color-scheme: dark) { .fg { stroke: #ededed; } }
   </style>
   <path class="fg" d="M7 8 L15 16 L7 24" fill="none" stroke-width="4"
