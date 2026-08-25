@@ -26,8 +26,8 @@ splunk:      { label: "Splunk",              icon: splunk }
 linux:       { label: "Linux",               icon: linux }
 ubuntu:      { label: "Ubuntu",              icon: ubuntu }
 raspberrypi: { label: "Raspberry Pi",        icon: raspberrypi }
-rp2040:      { label: "RP2040" }               # Waveshare board, RPi silicon - no vendor icon, renders as a text chip
-waveshare:   { label: "Waveshare" }            # no icon in Simple Icons, renders as a text chip
+rp2040:      { label: "Waveshare RP2040-Zero", icon: waveshare }
+waveshare:   { label: "Waveshare",            icon: waveshare }
 bash:        { label: "Bash",                icon: gnubash }
 git:         { label: "Git",                 icon: git }
 github:      { label: "GitHub",              icon: github }
